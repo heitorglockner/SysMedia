@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Jenssegers\Mongodb\Schema\Blueprint;
 
 class CreateMediaTable extends Migration {
 
@@ -12,17 +12,17 @@ class CreateMediaTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('media', function(Blueprint $table)
+		Schema::create('media', function(Blueprint $collection)
 		{
-			$table->increments('id');
-			$table->string('name');
-			$table->string('image');
-			$table->string('psd');
-			$table->string('comments');
-			$table->dateTime('publish');
-			$table->integer('author_id')->unsigned()->index('fk_media_author_id_idx');
-			$table->string('slug', 100);
-			$table->timestamps();
+			$collection->increments('id');
+			$collection->string('name');
+			$collection->string('image');
+			$collection->string('psd');
+			$collection->string('comments');
+			$collection->dateTime('publish');
+			$collection->integer('author_id')->unsigned()->index('fk_media_author_id_idx');
+			$collection->string('slug', 100);
+			$collection->timestamps();
 		});
 	}
 

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Jenssegers\Mongodb\Schema\Blueprint;
 
 class AddForeignKeysToMediaTable extends Migration {
 
@@ -12,9 +12,9 @@ class AddForeignKeysToMediaTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('media', function(Blueprint $table)
+		Schema::table('media', function(Blueprint $collection)
 		{
-			$table->foreign('author_id', 'fk_media_author_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
+			$collection->foreign('author_id', 'fk_media_author_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
 		});
 	}
 
@@ -26,9 +26,9 @@ class AddForeignKeysToMediaTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('media', function(Blueprint $table)
+		Schema::table('media', function(Blueprint $collection)
 		{
-			$table->dropForeign('fk_media_author_id');
+			$collection->dropForeign('fk_media_author_id');
 		});
 	}
 

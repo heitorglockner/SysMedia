@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Jenssegers\Mongodb\Schema\Blueprint;
 
 class CreateMediaUsersTable extends Migration {
 
@@ -12,11 +12,11 @@ class CreateMediaUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('media_users', function(Blueprint $table)
+		Schema::create('media_users', function(Blueprint $collection)
 		{
-			$table->integer('id', true);
-			$table->integer('user_id')->unsigned()->index('user_id');
-			$table->integer('media_id')->unsigned()->index('bk_media_users_media_id');
+			$collection->integer('id', true);
+			$collection->integer('user_id')->unsigned()->index('user_id');
+			$collection->integer('media_id')->unsigned()->index('bk_media_users_media_id');
 		});
 	}
 

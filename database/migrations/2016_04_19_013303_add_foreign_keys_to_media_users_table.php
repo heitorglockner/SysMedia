@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Jenssegers\Mongodb\Schema\Blueprint;
 
 class AddForeignKeysToMediaUsersTable extends Migration {
 
@@ -12,10 +12,10 @@ class AddForeignKeysToMediaUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('media_users', function(Blueprint $table)
+		Schema::table('media_users', function(Blueprint $collection)
 		{
-			$table->foreign('user_id', 'fk_media_users_user_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
-			$table->foreign('media_id', 'fk_media_users_media_id')->references('id')->on('media')->onUpdate('CASCADE')->onDelete('CASCADE');
+			$collection->foreign('user_id', 'fk_media_users_user_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
+			$collection->foreign('media_id', 'fk_media_users_media_id')->references('id')->on('media')->onUpdate('CASCADE')->onDelete('CASCADE');
 		});
 	}
 
@@ -27,10 +27,10 @@ class AddForeignKeysToMediaUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('media_users', function(Blueprint $table)
+		Schema::table('media_users', function(Blueprint $collection)
 		{
-			$table->dropForeign('fk_media_users_user_id');
-			$table->dropForeign('fk_media_users_media_id');
+			$collection->dropForeign('fk_media_users_user_id');
+			$collection->dropForeign('fk_media_users_media_id');
 		});
 	}
 
